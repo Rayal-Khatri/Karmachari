@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="row">
+        {% for attendance in attendances %}
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ attendance.name }}</h5>
+                    <p class="card-text">Date: {{ attendance.dateOfQuestion }}</p>
+                    <p class="card-text">Status: {{ attendance.status }}</p>
+                    <a href="{% url 'chart' year=attendance.dateOfQuestion|date:'Y' month=attendance.dateOfQuestion|date:'m' %}" class="btn btn-primary">View Chart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>

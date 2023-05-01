@@ -1,0 +1,42 @@
+<canvas id="myChart"></canvas>
+<script>
+var data = JSON.parse('{{ data|json_encode|escapejs }}');
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: data.map(function(item) { return item.date; }),
+        datasets: [
+            {
+                label: 'Present',
+                data: data.filter(function(item) { return item.status == 'Present'; }).map(function(item) { return item.count; }),
+                backgroundColor: 'green'
+            },
+            {
+                label: 'Absent',
+                data: data.filter(function(item) { return item.status == 'Absent'; }).map(function(item) { return item.count; }),
+                backgroundColor: 'red'
+            },
+            {
+                label: 'Leave',
+                data: data.filter(function(item) { return item.status == 'Leave'; }).map(function(item) { return item.count; }),
+                backgroundColor: 'yellow'
+            },
+            {
+                label: 'Late',
+                data: data.filter(function(item) { return item.status == 'Late'; }).map(function(item) { return item.count; }),
+                backgroundColor: 'orange'
+            },
+        ]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>

@@ -1,0 +1,16 @@
+.chart_container
+{
+    position: fixed;
+    top: 7%;
+    left: 15%;
+    width: 85%;
+    zoom: .8;
+}
+@media (max-width: 576px) {
+
+    .chart_container
+    {
+        left: 0;
+        width: 100%;
+    }
+}
