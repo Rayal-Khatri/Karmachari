@@ -315,9 +315,7 @@ def chart(request, year, month):
     end_date = timezone.datetime(int(year), int(month), num_days, 23, 59, 59, tzinfo=timezone.get_current_timezone()).date()
 
     # Query the database to get the counts for each status for the specified user and month
-    status_counts = Attendance.objects.filter(Q(user=user_object) & Q(dateOfQuestion__range=(start_date, end_date))).values('status').annotate(count=Count('status'))
-
-    # Calculate the score
+    status_counts = Attendance.objects.filter(Q(user=user_object) & Q(dateOfQuestion__range=(start_date, end_date))).exclude(status='Holiday').exclude(status='Leave').values('status').annotate(count=Count('status'))    # Calculate the score
     total_present = 0
     total_late = 0
     total_absent = 0

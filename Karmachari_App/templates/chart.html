@@ -52,37 +52,42 @@
             </div>
         </div>
     </div>
+     
+ 
+// Define the data for the pie chart with the colors array 
+ 
+ 
 
     <!-- Load Plotly and jQuery scripts -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        // Define the data for the pie chart
-        var data = [{      values: {{ values| safe }},      labels: {{ labels| safe }},      type: 'pie'}];
-      
-        // Define the layout for the pie chart
-        var layout = {
-          height: '30vh',
-          margin: {
-                l: 0,
-                r: 0,
-                b: 0,
-                t: 0
-            }
-        };
-      
-        // Render the pie chart in the 'chart' div
-        Plotly.newPlot('chart', data, layout);
-      
-        // Resize the chart when the window is resized
-        window.onresize = function() {
-          Plotly.relayout('chart', {
-            height: '30vh'
-          });
-        };
+    <script> 
+        // Define the data for the pie chart 
+        // Define the colors for the pie chart slices 
+      var colors = ['green', 'yellow', 'red']; 
+       
+      // Define the data for the pie chart with the colors array 
+       
+       
+        var data = [{ 
+            values: {{ values| safe }}, 
+            labels: {{ labels| safe }}, 
+            type: 'pie', 
+            marker: {colors:colors} 
+        }]; 
+       
+        // Define the layout for the pie chart 
+        var layout = { 
+          height: 400, 
+          margin: { 
+                l: 0, 
+                r: 0, 
+                b: 0, 
+                t: 0 
+            } 
+        }; 
+       
+        // Render the pie chart in the 'chart' div 
+        Plotly.newPlot('chart', data, layout); 
       </script>
-      
-
-    <!-- Load Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-</body>
+      </body>
